@@ -9,8 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #7C3AED;
-            --primary-dark: #6D28D9;
+            --primary: #8B5CF6;
+            --primary-dark: #7C3AED;
+            --primary-light: #A78BFA;
             --bg-dark: #0a0a0a;
             --bg-card: #141414;
             --bg-elevated: #1a1a1a;
@@ -18,12 +19,14 @@
             --text-secondary: #a3a3a3;
             --text-muted: #666666;
             --accent-gold: #C9A227;
-            --gradient-hero: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+            --gradient-hero: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 30%, #2d1b4e 50%, #1a1a2e 70%, #0a0a0a 100%);
             --gradient-card: linear-gradient(145deg, #141414 0%, #1a1a1a 100%);
+            --gradient-purple: linear-gradient(135deg, #7C3AED 0%, #8B5CF6 50%, #A78BFA 100%);
             --blur-glass: blur(20px);
             --border-subtle: rgba(255,255,255,0.08);
-            --border-accent: rgba(124,58,237,0.5);
-            --shadow-glow: 0 0 40px rgba(124,58,237,0.15);
+            --border-accent: rgba(139,92,246,0.6);
+            --shadow-glow: 0 0 40px rgba(139,92,246,0.2);
+            --shadow-glow-strong: 0 0 60px rgba(139,92,246,0.3);
             --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -66,6 +69,16 @@
             transition: var(--transition);
         }
 
+        .navbar::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.4), transparent);
+        }
+
         .navbar.scrolled {
             padding: 15px 0;
             background: rgba(10, 10, 10, 0.95);
@@ -87,6 +100,7 @@
 
         .logo span {
             color: var(--primary);
+            text-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
         }
 
         .nav-links {
@@ -113,7 +127,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary);
+            background: var(--gradient-purple);
             transition: var(--transition);
         }
 
@@ -136,6 +150,19 @@
             overflow: hidden;
         }
 
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(ellipse at center, rgba(139,92,246,0.15) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
         .hero::before {
             content: '';
             position: absolute;
@@ -143,8 +170,21 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.02)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(139,92,246,0.08)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
             pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(ellipse at center, rgba(139,92,246,0.2) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
         }
 
         .hero-bg {
@@ -156,6 +196,7 @@
             object-fit: cover;
             opacity: 0.4;
             transition: opacity 0.5s ease;
+            filter: hue-rotate(10deg) saturate(1.2);
         }
 
         .hero-content {
@@ -164,16 +205,18 @@
             text-align: center;
             max-width: 900px;
             padding: 0 20px;
+            filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.2));
         }
 
         .hero-subtitle {
             font-size: 1rem;
-            color: var(--accent-gold);
+            color: var(--primary-light);
             text-transform: uppercase;
             letter-spacing: 6px;
             margin-bottom: 20px;
             opacity: 0;
             animation: fadeInUp 1s ease forwards 0.3s;
+            text-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
         }
 
         .hero-title {
@@ -187,6 +230,7 @@
         .hero-title span {
             display: block;
             color: var(--primary);
+            text-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
         }
 
         .hero-description {
@@ -196,6 +240,7 @@
             margin: 0 auto 40px;
             opacity: 0;
             animation: fadeInUp 1s ease forwards 0.7s;
+            text-shadow: 0 0 10px rgba(139, 92, 246, 0.1);
         }
 
         .hero-buttons {
@@ -244,7 +289,22 @@
         .btn-primary:hover {
             background: var(--primary-dark);
             transform: translateY(-3px);
-            box-shadow: var(--shadow-glow);
+            box-shadow: var(--shadow-glow-strong);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
         }
 
         .btn-secondary {
@@ -256,7 +316,8 @@
 
         .btn-secondary:hover {
             border-color: var(--primary);
-            background: rgba(124, 58, 237, 0.1);
+            background: rgba(139, 92, 246, 0.15);
+            box-shadow: var(--shadow-glow);
         }
 
         /* Section Styles */
@@ -292,6 +353,18 @@
         .courses {
             background: var(--bg-dark);
             position: relative;
+            overflow: hidden;
+        }
+
+        .courses::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .courses-grid {
@@ -321,10 +394,27 @@
             transition: var(--transition);
         }
 
+        .course-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(139,92,246,0.08) 0%, transparent 50%);
+            pointer-events: none;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .course-card:hover::after {
+            opacity: 1;
+        }
+
         .course-card:hover {
             transform: translateY(-10px);
             border-color: var(--border-accent);
-            box-shadow: var(--shadow-glow);
+            box-shadow: var(--shadow-glow-strong);
         }
 
         .course-card:hover::before {
@@ -364,12 +454,13 @@
         .course-tag {
             display: inline-block;
             padding: 5px 15px;
-            background: rgba(124, 58, 237, 0.2);
-            color: var(--primary);
+            background: rgba(139, 92, 246, 0.25);
+            color: var(--primary-light);
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 15px;
+            border-radius: 4px;
         }
 
         .course-title {
@@ -413,7 +504,18 @@
             right: -20%;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .about::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -444,6 +546,7 @@
             border: 2px solid var(--primary);
             border-radius: 4px;
             z-index: -1;
+            box-shadow: var(--shadow-glow);
         }
 
         .about-content h2 {
@@ -453,6 +556,7 @@
 
         .about-content h2 span {
             color: var(--primary);
+            text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
         }
 
         .about-text {
@@ -477,6 +581,7 @@
             font-size: 3.5rem;
             color: var(--primary);
             line-height: 1;
+            text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
         }
 
         .stat-label {
@@ -489,6 +594,19 @@
         /* News Section */
         .news {
             background: var(--bg-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news::before {
+            content: '';
+            position: absolute;
+            top: 30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .news-grid {
@@ -508,6 +626,23 @@
         .news-card:hover {
             border-color: var(--border-accent);
             transform: translateY(-5px);
+            box-shadow: var(--shadow-glow-strong);
+        }
+
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-purple);
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .news-card:hover::before {
+            transform: scaleX(1);
         }
 
         .news-image {
@@ -638,6 +773,29 @@
         .contact {
             background: var(--bg-card);
             position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .contact::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .contact-wrapper {
@@ -661,7 +819,7 @@
         .contact-icon {
             width: 50px;
             height: 50px;
-            background: rgba(124, 58, 237, 0.1);
+            background: rgba(139, 92, 246, 0.15);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -669,6 +827,12 @@
             color: var(--primary);
             font-size: 1.2rem;
             flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .contact-icon:hover {
+            background: rgba(139, 92, 246, 0.25);
+            box-shadow: var(--shadow-glow);
         }
 
         .contact-text h4 {
@@ -722,7 +886,7 @@
         .form-group select:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
         }
 
         .form-group textarea {
@@ -735,6 +899,18 @@
             background: var(--bg-dark);
             padding: 60px 0 30px;
             border-top: 1px solid var(--border-subtle);
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
         }
 
         .footer-content {
@@ -780,6 +956,7 @@
 
         .footer-column a:hover {
             color: var(--primary);
+            text-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
         }
 
         .footer-bottom {
@@ -813,7 +990,8 @@
         .social-links a:hover {
             border-color: var(--primary);
             color: var(--primary);
-            background: rgba(124, 58, 237, 0.1);
+            background: rgba(139, 92, 246, 0.15);
+            box-shadow: var(--shadow-glow);
         }
 
         /* Admin Panel */
@@ -864,6 +1042,7 @@
         .admin-login input:focus {
             outline: none;
             border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
         }
 
         /* Admin Dashboard */
@@ -926,7 +1105,7 @@
 
         .admin-nav-item:hover,
         .admin-nav-item.active {
-            background: rgba(124, 58, 237, 0.1);
+            background: rgba(139, 92, 246, 0.15);
             color: var(--text-primary);
             border-left-color: var(--primary);
         }
@@ -955,6 +1134,7 @@
         .admin-logout button:hover {
             border-color: var(--primary);
             color: var(--primary);
+            background: rgba(139, 92, 246, 0.1);
         }
 
         .admin-main {
@@ -1271,7 +1451,18 @@
             transform: translate(-50%, -50%);
             width: 800px;
             height: 800px;
-            background: radial-gradient(circle, rgba(201, 162, 39, 0.05) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .services::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -1298,16 +1489,33 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--accent-gold));
+            background: var(--gradient-purple);
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.4s ease;
         }
 
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(139,92,246,0.1) 0%, transparent 40%);
+            pointer-events: none;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
+        }
+
         .service-card:hover {
             transform: translateY(-10px);
             border-color: var(--border-accent);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), var(--shadow-glow);
         }
 
         .service-card:hover::before {
@@ -1317,8 +1525,8 @@
         .service-label {
             display: inline-block;
             padding: 6px 16px;
-            background: rgba(124, 58, 237, 0.15);
-            color: var(--primary);
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--primary-light);
             font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
@@ -1578,6 +1786,186 @@
             z-index: 10000;
         }
 
+        /* Enhanced Animations */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.6); }
+        }
+
+        @keyframes slideInFromLeft {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInFromRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes rotateIn {
+            from { transform: rotate(-180deg) scale(0); opacity: 0; }
+            to { transform: rotate(0) scale(1); opacity: 1; }
+        }
+
+        /* Enhanced Button Effects */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn-primary:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Enhanced Card Effects */
+        .course-card,
+        .service-card,
+        .news-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before,
+        .service-card::before,
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .course-card:hover::before,
+        .service-card:hover::before,
+        .news-card:hover::before {
+            left: 100%;
+        }
+
+        /* Enhanced Form Effects */
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        /* Enhanced Stats Animation */
+        .stat-number {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Enhanced Logo Animation */
+        .logo span {
+            display: inline-block;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        /* Enhanced Service Button */
+        .service-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .service-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Enhanced Contact Form */
+        .contact-form {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            animation: float 15s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        /* Enhanced Modal */
+        .modal-content {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent-gold), var(--primary));
+            background-size: 200% 100%;
+            animation: shimmer 3s linear infinite;
+        }
+
+        /* Enhanced Admin Panel */
+        .admin-panel {
+            position: relative;
+        }
+
+        .admin-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(201, 162, 39, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .admin-main {
+            position: relative;
+            z-index: 1;
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .about-grid,
@@ -1776,27 +2164,58 @@
                     </div>
                 </div>
                 <form class="contact-form fade-in-right" id="contactForm">
-                    <div class="form-group">
-                        <label>Имя</label>
-                        <input type="text" id="formName" placeholder="Ваше имя" required>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Имя *</label>
+                            <input type="text" id="formName" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Фамилия *</label>
+                            <input type="text" id="formLastName" placeholder="Ваша фамилия" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Дата рождения *</label>
+                            <input type="date" id="formBirthDate" required>
+                            <div id="ageDisplay" style="margin-top: 8px; color: var(--primary-light); font-size: 0.9rem;"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Телефон *</label>
+                            <input type="tel" id="formPhone" placeholder="+7 (999) 123-45-67" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Страна *</label>
+                            <input type="text" id="formCountry" placeholder="Россия" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Город *</label>
+                            <input type="text" id="formCity" placeholder="Москва" required>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label>Email</label>
+                        <label>Email *</label>
                         <input type="email" id="formEmail" placeholder="Ваш email" required>
                     </div>
                     <div class="form-group">
                         <label>Курс</label>
                         <select id="formCourse">
                             <option value="">Выберите курс</option>
-                            <option value=" режиссура">Режиссура</option>
-                            <option value=" операторское искусство">Операторское искусство</option>
-                            <option value=" сценарное мастерство">Сценарное мастерство</option>
-                            <option value=" монтаж">Монтаж</option>
+                            <option value="режиссура">Режиссура</option>
+                            <option value="операторское искусство">Операторское искусство</option>
+                            <option value="сценарное мастерство">Сценарное мастерство</option>
+                            <option value="монтаж">Монтаж</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Сообщение</label>
                         <textarea id="formMessage" placeholder="Ваше сообщение"></textarea>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="formConsent" required>
+                        <label for="formConsent">Я согласен с обработкой моих персональных данных в соответствии с <a href="#" style="color: var(--primary);">политикой конфиденциальности</a></label>
                     </div>
                     <button type="submit" class="btn btn-primary">Отправить заявку</button>
                 </form>
@@ -2114,10 +2533,16 @@
                             <thead>
                                 <tr>
                                     <th>Имя</th>
+                                    <th>Фамилия</th>
+                                    <th>Дата рождения</th>
+                                    <th>Возраст</th>
+                                    <th>Телефон</th>
+                                    <th>Страна</th>
+                                    <th>Город</th>
                                     <th>Email</th>
                                     <th>Курс</th>
                                     <th>Сообщение</th>
-                                    <th>Дата</th>
+                                    <th>Дата заявки</th>
                                     <th>Статус</th>
                                 </tr>
                             </thead>
@@ -2773,9 +3198,16 @@
                     emptyState.style.display = 'none';
                     
                     leadsArray.forEach(([id, lead]) => {
+                        const age = lead.age || (lead.birthDate ? calculateAge(lead.birthDate) : '');
                         tbody.innerHTML += `
                             <tr>
                                 <td>${lead.name || ''}</td>
+                                <td>${lead.lastName || ''}</td>
+                                <td>${lead.birthDate || ''}</td>
+                                <td style="color: var(--primary-light); font-weight: 600;">${age}</td>
+                                <td>${lead.phone || ''}</td>
+                                <td>${lead.country || ''}</td>
+                                <td>${lead.city || ''}</td>
                                 <td>${lead.email || ''}</td>
                                 <td>${lead.course || ''}</td>
                                 <td>${lead.message || ''}</td>
@@ -2875,18 +3307,79 @@
             alert('Пароль успешно изменен!');
         }
 
+        // Calculate age from birth date
+        function calculateAge(birthDate) {
+            const today = new Date();
+            const birth = new Date(birthDate);
+            let age = today.getFullYear() - birth.getFullYear();
+            const monthDiff = today.getMonth() - birth.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+                age--;
+            }
+            
+            return age;
+        }
+
+        // Setup birth date age calculation
+        function setupBirthDateCalculation() {
+            const birthDateInput = document.getElementById('formBirthDate');
+            const ageDisplay = document.getElementById('ageDisplay');
+            
+            birthDateInput.addEventListener('change', function() {
+                if (this.value) {
+                    const age = calculateAge(this.value);
+                    ageDisplay.textContent = `Возраст: ${age} ${getAgeWord(age)}`;
+                } else {
+                    ageDisplay.textContent = '';
+                }
+            });
+        }
+
+        // Get correct word form for age
+        function getAgeWord(age) {
+            const lastDigit = age % 10;
+            const lastTwoDigits = age % 100;
+            
+            if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
+                return 'лет';
+            }
+            
+            if (lastDigit === 1) {
+                return 'год';
+            }
+            
+            if (lastDigit >= 2 && lastDigit <= 4) {
+                return 'года';
+            }
+            
+            return 'лет';
+        }
+
         // Submit contact form
         async function submitContactForm(e) {
             e.preventDefault();
             
             const name = document.getElementById('formName').value;
+            const lastName = document.getElementById('formLastName').value;
+            const birthDate = document.getElementById('formBirthDate').value;
+            const phone = document.getElementById('formPhone').value;
+            const country = document.getElementById('formCountry').value;
+            const city = document.getElementById('formCity').value;
             const email = document.getElementById('formEmail').value;
             const course = document.getElementById('formCourse').value;
             const message = document.getElementById('formMessage').value;
+            const age = calculateAge(birthDate);
             
             const leadsRef = ref(db, 'leads');
             await push(leadsRef, {
                 name,
+                lastName,
+                birthDate,
+                age,
+                phone,
+                country,
+                city,
                 email,
                 course,
                 message,
@@ -2896,6 +3389,7 @@
             
             alert('Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
             document.getElementById('contactForm').reset();
+            document.getElementById('ageDisplay').textContent = '';
         }
 
         // Check for admin mode
@@ -3223,6 +3717,7 @@
             setupSmoothScroll();
             setupScrollAnimations();
             setupModal();
+            setupBirthDateCalculation();
             
             // Event listeners
             document.getElementById('adminLoginBtn').addEventListener('click', adminLogin);
